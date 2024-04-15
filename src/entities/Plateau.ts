@@ -1,5 +1,5 @@
-import Coordinates from './Coordinates';
-import Position from './Position';
+import Coordinates from "./Coordinates";
+import Position from "./Position";
 
 class Plateau {
   private readonly _minCoordinates: Coordinates;

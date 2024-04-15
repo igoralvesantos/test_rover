@@ -1,8 +1,8 @@
 export enum CardinalDirections {
-  North = 'N',
-  East = 'E',
-  South = 'S',
-  West = 'W',
+  North = "N",
+  East = "E",
+  South = "S",
+  West = "W",
 }
 
 class Position {

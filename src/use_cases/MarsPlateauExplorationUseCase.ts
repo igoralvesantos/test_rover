@@ -1,9 +1,11 @@
-import Plateau from '../entities/Plateau';
-import Position, { CardinalDirections } from '../entities/Position';
-import Rover from '../entities/Rover';
-import RoverNavigationService, { Commands } from '../services/RoverNavigationService';
-import { IFileReader } from '../infrastructure/NodeFileReader';
-import Coordinates from '../entities/Coordinates';
+import Plateau from "../entities/Plateau";
+import Position, { CardinalDirections } from "../entities/Position";
+import Rover from "../entities/Rover";
+import RoverNavigationService, {
+  Commands,
+} from "../services/RoverNavigationService";
+import { IFileReader } from "../infrastructure/NodeFileReader";
+import Coordinates from "../entities/Coordinates";
 
 class MarsPlateauExplorationUseCase {
   private inputFilePath: string;
@@ -33,7 +35,7 @@ class MarsPlateauExplorationUseCase {
   }
 
   private createPlateau(line: string) {
-    const [maxX, maxY] = line.split(' ').map(Number);
+    const [maxX, maxY] = line.split(" ").map(Number);
     const minCoordinates = new Coordinates(0, 0);
     const maxCoordinates = new Coordinates(maxX, maxY);
 
@@ -41,9 +43,13 @@ class MarsPlateauExplorationUseCase {
   }
 
   private deployRover(line: string) {
-    const [x, y, direction] = line.split(' ');
+    const [x, y, direction] = line.split(" ");
 
-    const position = new Position(Number(x), Number(y), direction as CardinalDirections);
+    const position = new Position(
+      Number(x),
+      Number(y),
+      direction as CardinalDirections,
+    );
     const rover = new Rover(position);
 
     this.explorationRovers.push(rover);
@@ -51,10 +57,12 @@ class MarsPlateauExplorationUseCase {
   }
 
   private navigateRover(rover: Rover, line: string) {
-    const commands = line.split('') as Commands[];
+    const commands = line.split("") as Commands[];
 
     if (!this.plateau) {
-      throw new Error('plateau not found: A plateau must exist for exploration.');
+      throw new Error(
+        "plateau not found: A plateau must exist for exploration.",
+      );
     }
 
     const navigationService = new RoverNavigationService(rover, this.plateau);
@@ -100,7 +108,7 @@ class MarsPlateauExplorationUseCase {
       if (error instanceof Error) {
         console.log(error.message);
       } else {
-        console.log('An unknown error occurred during execution.');
+        console.log("An unknown error occurred during execution.");
       }
     }
   }

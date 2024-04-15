@@ -1,5 +1,5 @@
-import MarsPlateauExplorationUseCase from '../../src/use_cases/MarsPlateauExplorationUseCase';
-import FileReader from '../../src/infrastructure/NodeFileReader';
+import MarsPlateauExplorationUseCase from "../../src/use_cases/MarsPlateauExplorationUseCase";
+import FileReader from "../../src/infrastructure/NodeFileReader";
 
 async function* asyncGenerator(array: string[]) {
   for (let item of array) {
@@ -7,13 +7,13 @@ async function* asyncGenerator(array: string[]) {
   }
 }
 
-describe('MarsPlateauExplorationUseCase', () => {
+describe("MarsPlateauExplorationUseCase", () => {
   const fileReader = new FileReader();
-  const useCase = new MarsPlateauExplorationUseCase('input.txt', fileReader);
+  const useCase = new MarsPlateauExplorationUseCase("input.txt", fileReader);
 
-  it('should create a plateau from the first line of the file', async () => {
-    const mockFileContent = asyncGenerator(['5 5', '1 2 N', 'LMLMLMLMM']);
-    jest.spyOn(fileReader, 'readLines').mockReturnValue(mockFileContent);
+  it("should create a plateau from the first line of the file", async () => {
+    const mockFileContent = asyncGenerator(["5 5", "1 2 N", "LMLMLMLMM"]);
+    jest.spyOn(fileReader, "readLines").mockReturnValue(mockFileContent);
 
     await useCase.executeExplorationFromFile();
 
@@ -24,18 +24,24 @@ describe('MarsPlateauExplorationUseCase', () => {
     expect(useCase.plateau!.maxCoordinates.y).toBe(5);
   });
 
-  it('should deploy and navigate rovers according to the file content', async () => {
-    const mockFileContent = asyncGenerator(['5 5', '1 2 N', 'LMLMLMLMM', '3 3 E', 'MMRMMRMRRM']);
-    jest.spyOn(fileReader, 'readLines').mockReturnValue(mockFileContent);
+  it("should deploy and navigate rovers according to the file content", async () => {
+    const mockFileContent = asyncGenerator([
+      "5 5",
+      "1 2 N",
+      "LMLMLMLMM",
+      "3 3 E",
+      "MMRMMRMRRM",
+    ]);
+    jest.spyOn(fileReader, "readLines").mockReturnValue(mockFileContent);
 
     await useCase.executeExplorationFromFile();
 
     expect(useCase.explorationRovers.length).toBe(3);
     expect(useCase.explorationRovers[1].position.x).toBe(1);
     expect(useCase.explorationRovers[1].position.y).toBe(3);
-    expect(useCase.explorationRovers[1].position.cardinalDirection).toBe('N');
+    expect(useCase.explorationRovers[1].position.cardinalDirection).toBe("N");
     expect(useCase.explorationRovers[2].position.x).toBe(5);
     expect(useCase.explorationRovers[2].position.y).toBe(1);
-    expect(useCase.explorationRovers[2].position.cardinalDirection).toBe('E');
+    expect(useCase.explorationRovers[2].position.cardinalDirection).toBe("E");
   });
 });

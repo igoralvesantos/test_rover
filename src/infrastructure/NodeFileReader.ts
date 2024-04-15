@@ -1,6 +1,6 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as readline from 'readline';
+import * as fs from "fs";
+import * as path from "path";
+import * as readline from "readline";
 
 export interface IFileReader {
   readLines(filePath: string): AsyncIterable<string>;
@@ -8,7 +8,10 @@ export interface IFileReader {
 
 class NodeFileReader implements IFileReader {
   async *readLines(filePath: string): AsyncIterable<string> {
-    const fileStream = fs.createReadStream(path.resolve(__dirname, filePath), 'utf-8');
+    const fileStream = fs.createReadStream(
+      path.resolve(__dirname, filePath),
+      "utf-8",
+    );
     const rl = readline.createInterface({
       input: fileStream,
       crlfDelay: Infinity,

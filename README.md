@@ -9,14 +9,18 @@ Projeto realizado como teste para a vaga de Backend Pleno na empresa Foxbit.
 Para rodar este projeto, você precisa ter o Node.js na versão **v20.12.2** instalado na sua máquina.
 
 ### Rodando o projeto
-Antes de rodar o projeto é necessário instalar as dependencias com o comando ```npm install```.
-Para rodar o projeto na versão de desenvolvimento basta rodar o comando ```npm run dev``` e para executar na versão de produção basta rodar o comando ```npm start```.
+
+Antes de rodar o projeto é necessário instalar as dependencias com o comando `npm install`.
+Para rodar o projeto na versão de desenvolvimento basta rodar o comando `npm run dev` e para executar na versão de produção basta rodar o comando `npm start`, dessa forma ele usará o arquivo padrão de teste já presente no projeto, caso queira passar um arquivo customizado basta passar o caminho do arquivo após o comando como o exemplo ao lado `npm run dev ../../file_example/mars_exploration.txt`.
 
 ### Rodando os teste
-Para rodar os testes basta rodar o comando ```npm run test```.
+
+Para rodar os testes basta rodar o comando `npm run test`.
 
 ### Arquitetura
+
 A arquitetura utilizada foi baseada na clean archtecture e ficou com a sequintes estruturas.
+
 ```
 ├── file_example/
 │   └── mars_exploration.txt
